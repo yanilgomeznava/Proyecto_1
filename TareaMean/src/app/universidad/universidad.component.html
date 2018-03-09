@@ -1,0 +1,32 @@
+
+<div class="row">
+	<div class ="col-sm-9">
+		<div *ngIf="!hidenewUniversidad">
+			<h2>Nueva Universidad</h2>
+			<form #form="ngForm" (ngSubmit)="onSubmitAddUniversidad(form.value)" class="well">
+				<div class="form-group">
+					<label>Nombre</label>
+					<input type="text" class="form-control" required name="nombre" ngModel>
+				</div>
+				<div class="form-group">
+					<label>Pais</label>
+					<input type="text" class="form-control" required name="pais" ngModel>
+				</div>
+				<div class="form-group">
+					<label>Ciudad</label>
+					<input type="text" class="form-control" name="ciudad" ngModel>
+				</div>
+				<button type="submit" class="btn btn-success">Guardar</button>
+			</form>
+		</div>
+		<universidad-detalle (updateUniversidadEvent) = "onUpdateUniversidadEvent($event)" 
+							(deleteUniversidadEvent) = "onDeleteUniversidadEvent($event)" *ngIf="selectedUniversidad && hidenewUniversidad" [universidad]="selectedUniversidad"></universidad-detalle>		
+	</div>
+	<div class="col-sm-3">
+		<button  (click)="newUniversidad()"style="margin-bottom:2px;" type="button" class="btn btn-success btn-block">Agregar</button>
+		<universidad-list (SelectUniversidad)="onSelectUniversidad($event)" [universidades]="universidades"></universidad-list>
+	</div>
+</div>
+
+
+			
