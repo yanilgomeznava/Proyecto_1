@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const Universidad = require('../models/universidad');
+const Materia = require('../models/materia.model');
 
-const db = "mongodb://localhost:27017/bdTarea";
+const db = "mongodb://admin:1234@ds261828.mlab.com:61828/bdtarea";
 mongoose.Promise = global.Promise;
 
 mongoose.connect(db, function(err){
@@ -12,33 +12,33 @@ mongoose.connect(db, function(err){
     }
 });
 
-router.get('/universidades', function(req, res){
-    console.log('Get request for all universidades');
-    Universidad.find({})
-    .exec(function(err, universidades){
+router.get('/materias', function(req, res){
+    console.log('Get request for all materias');
+    Materia.find({})
+    .exec(function(err, materias){
     	
         if (err){
-            console.log("Error retrieving universidades");
+            console.log("Error retrieving materias");
         }else {
-            res.json(universidades);
+            res.json(materias);
         }
     });
 });
 
-router.get('/universidades/:id', function(req, res){
-    console.log('Get request for a unico video');
-    Universidad.findById(req.params.id)
-    .exec(function(err, universidad){
+router.get('/materias/:id', function(req, res){
+    console.log('Get request for a unica materia');
+    Materia.findById(req.params.id)
+    .exec(function(err, materia){
         if (err){
-            console.log("Error retrieving universidad");
+            console.log("Error retrieving materia");
         }else {
-            res.json(universidad);
+            res.json(materia);
         }
     });
 });
 
 
-router.post('/universidad', function(req, res){
+router.post('/materia', function(req, res){
     console.log('Post universidad');
     var newUniversidad = new Universidad();
     newUniversidad.nombre = req.body.nombre;
