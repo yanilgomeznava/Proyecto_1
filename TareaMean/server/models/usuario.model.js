@@ -7,6 +7,14 @@ const usuarioSchema = new Schema({
     type: String,
     required: true
   },
+  userName: {
+    type: String,
+    required: true
+  },
+  pass:{
+    type: String,
+    required: true
+  },
   usuarioApellidos: {
     type: String,
     required: true

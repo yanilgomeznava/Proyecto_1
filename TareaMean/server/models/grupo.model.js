@@ -3,29 +3,28 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const grupoSchema = new Schema({
-    materia = {type:Schema.Types.ObjectId, ref:'materia'},
-    profesor = {type:Schema.Types.ObjectId, ref:'usuario'},
-    num_grupo = [number],
-    aula = String,
-    periodo = [number],
-    anno = [number],
-    estudiantesInscritos = [{type:Schema.Types.ObjectId, ref:'usuario'}],
-    horario = [{
-        dia = [Date],
+    materia: {type:Schema.Types.ObjectId, ref:'materia'},
+    profesor: {type:Schema.Types.ObjectId, ref:'usuario'},
+    aula: String,
+    periodo: [Number],
+    anno: [Number],
+    estudiantesInscritos: [{type:Schema.Types.ObjectId, ref:'usuario'}],
+    horario: [{
+        dia: [Date],
     }],
-    evaluacion= [{
-        titulo = String,
-        tipo=String,
-        porcentaje = [number],
-        fechaEntrega = [Date],
-        notas = [{
-           estudiante = {type: Schema.Types.ObjectId, ref:'usuario'},
-           nota = [number],
+    evaluacion: [{
+        titulo: String,
+        tipo: String,
+        porcentaje: [Number],
+        fechaEntrega: [Date],
+        notas: [{
+           estudiante: {type: Schema.Types.ObjectId, ref:'usuario'},
+           nota: [Number],
         }]
     }],
-    asistencia = [{
-        fecha = [date],
-        asistentes = [{type: Schema.Types.ObjectId, ref:'usuario'}],
+    asistencia: [{
+        fecha: [Date],
+        asistentes: [{type: Schema.Types.ObjectId, ref:'usuario'}],
     }]
 
 

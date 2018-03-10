@@ -13,9 +13,9 @@ const universidadSchema = new Schema({
   },
   escuela:[{
     nombreEscuela: String,
-    programas: [{
+    programa: [{
       nombrePrograma: String,
-      mallas = [{
+      mallas: [{
         nombreMalla: String,
         materias:[{type: Schema.Types.ObjectId, ref:'materia'}] 
       }],
