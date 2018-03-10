@@ -1,12 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+var path = require('path');
 const Materia = require('../models/materia.model');
 const Foro = require('../models/foro.model');
 const Grupo = require('../models/grupo.model');
 const Mensajeria= require('../models/mensajeria.model');
 const Universidad = require('../models/universidad.model');
 const Usuario = require('../models/usuario.model');
+var passport = require('passport');
 
 const db = "mongodb://admin:1234@ds261828.mlab.com:61828/bdtarea";
 mongoose.Promise = global.Promise;
@@ -16,6 +18,8 @@ mongoose.connect(db, function(err){
         console.error("Error! " + err);
     }
 });
+
+
 
 router.get('/materias', function(req, res){
     console.log('Get request for all materias');
