@@ -14,9 +14,9 @@ const materiaSchema = new Schema({
     nombreMalla: [String],
     temasMateria:[{
       tituloTema: String,
-      tituloSubtema: [String]
+      tituloSubtema: [String],
       }]
-
+  
     }
     
   );

@@ -13,6 +13,7 @@ import { UniversidadListComponent } from './universidad-list/universidad-list.co
 import { UniversidadDetalleComponent } from './universidad-detalle/universidad-detalle.component';
 import { EscuelaComponent } from './escuela/escuela.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +21,7 @@ import { EscuelaComponent } from './escuela/escuela.component';
     UniversidadComponent,
     UniversidadListComponent,
     UniversidadDetalleComponent,
+    EscuelaComponent
   ],
   imports: [
     BrowserModule,
