@@ -281,7 +281,7 @@ router.delete('/grupo/:id', function(req, res){
 
 router.get('/mensajerias', function(req, res){
     console.log('Get request for all mensajerias');
-    Mensajeria.find({})
+    Mensajeria.find({}).populate("emisor","receptor")
     .exec(function(err, mensajerias){
     	
         if (err){
@@ -294,7 +294,7 @@ router.get('/mensajerias', function(req, res){
 
 router.get('/mensajerias/:id', function(req, res){
     console.log('Get request for a unica mensajeria');
-    Mensajeria.findById(req.params.id)
+    Mensajeria.findById(req.params.id).populate("emisor","receptor")
     .exec(function(err, mensajeria){
         if (err){
             console.log("Error retrieving mensajeria");
