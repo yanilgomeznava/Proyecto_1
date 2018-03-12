@@ -11,7 +11,10 @@ import { HomeComponent } from './home/home.component';
 import { UniversidadComponent } from './universidad/universidad.component';
 import { UniversidadListComponent } from './universidad-list/universidad-list.component';
 import { UniversidadDetalleComponent } from './universidad-detalle/universidad-detalle.component';
-import { EscuelaComponent } from './escuela/escuela.component';
+//import { EscuelaComponent } from './escuela/escuela.component';
+import { MateriaComponent } from './materia/materia.component';
+import { MateriaDetalleComponent } from './materia-detalle/materia-detalle.component';
+import { MateriaListComponent } from './materia-list/materia-list.component';
 
 
 @NgModule({
@@ -21,7 +24,10 @@ import { EscuelaComponent } from './escuela/escuela.component';
     UniversidadComponent,
     UniversidadListComponent,
     UniversidadDetalleComponent,
-    EscuelaComponent
+    //EscuelaComponent,
+    MateriaComponent,
+    MateriaDetalleComponent,
+    MateriaListComponent
   ],
   imports: [
     BrowserModule,
