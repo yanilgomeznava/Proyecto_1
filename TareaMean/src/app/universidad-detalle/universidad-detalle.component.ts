@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Universidad } from './../universidad';
 
+
 @Component({
   selector: 'universidad-detalle',
   templateUrl: './universidad-detalle.component.html',
