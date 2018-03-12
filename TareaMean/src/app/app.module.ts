@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { UniversidadComponent } from './universidad/universidad.component';
 import { UniversidadListComponent } from './universidad-list/universidad-list.component';
 import { UniversidadDetalleComponent } from './universidad-detalle/universidad-detalle.component';
+import { EscuelaComponent } from './escuela/escuela.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { UniversidadDetalleComponent } from './universidad-detalle/universidad-d
     HomeComponent,
     UniversidadComponent,
     UniversidadListComponent,
-    UniversidadDetalleComponent
+    UniversidadDetalleComponent,
+    EscuelaComponent
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,7 @@ const Grupo = require('../models/grupo.model');
 const Mensajeria= require('../models/mensajeria.model');
 const Universidad = require('../models/universidad.model');
 const Usuario = require('../models/usuario.model');
+const Escuela = require('../models/escuela.model');
 
 
 const db = "mongodb://admin:1234@ds261828.mlab.com:61828/bdtarea";
@@ -361,7 +362,7 @@ router.delete('/mensajeria/:id', function(req, res){
 
 router.get('/universidades', function(req, res){
     console.log('Get request for all universidades');
-    Universidad.find({}).populate("materia")
+    Universidad.find({})
     .exec(function(err, universidades){
     	
         if (err){
@@ -374,7 +375,7 @@ router.get('/universidades', function(req, res){
 
 router.get('/universidades/:id', function(req, res){
     console.log('Get request for a unica universidad');
-    Universidad.findById(req.params.id).populate("materia")
+    Universidad.findById(req.params.id)
     .exec(function(err, universidad){
         if (err){
             console.log("Error retrieving universidad");
@@ -389,14 +390,7 @@ router.post('/universidad', function(req, res){
     console.log('Post universidad');
     var newUniversidad = new Universidad();
     newUniversidad.nombreUniversidad = req.body.nombreUniversidad;
-    newUniversidad.paisUniversidad = req.body.paisUniversidad;
-    newUniversidad.escuela = req.body.escuela;
-    newUniversidad.programa = req.body.programas;
-    newUniversidad.nombrePrograma = req.body.nombrePrograma;
-    newUniversidad.mallas = req.body.mallas;
-    newUniversidad.nombreMalla = req.body.nombreMalla;
-    newUniversidad.materias = req.body.materias;
-    
+    newUniversidad.paisUniversidad = req.body.paisUniversidad;   
    
 
     newUniversidad.save(function(err, insertedUniversidad){
@@ -412,10 +406,7 @@ router.put('/universidad/:id', function(req, res){
     console.log('Actualizar universidad');
     Universidad.findByIdAndUpdate(req.params.id,
     {
-        $set: {nombreUniversidad: req.body.nombreUniversidad, paisUniversidad: req.body.paisUniversidad, 
-            escuela: req.body.escuela, programa: req.body.programa, nombrePrograma: req.body.nombrePrograma,
-            mallas: req.body.mallas, nombreMalla: req.body.nombreMalla, 
-            materias: req.body.materias}
+        $set: {nombreUniversidad: req.body.nombreUniversidad, paisUniversidad: req.body.paisUniversidad}
     },
     {
         new: true
@@ -457,7 +448,86 @@ router.get('/signup', function(req, res){
     });
 });
 
-//---------USUARIO------
+//---------Escuela------
+
+router.get('/escuelas', function(req, res){
+    console.log('Get request for all escuelas');
+    Escuela.find({}).populate("universidad","materia")
+    .exec(function(err, escuelas){
+    	
+        if (err){
+            console.log("Error retrieving escuelas");
+        }else {
+            res.json(escuelas);
+        }
+    });
+});
+
+router.get('/escuelas/:id', function(req, res){
+    console.log('Get request for a unica escuela');
+    Escuela.findById(req.params.id).populate("universidad","materia")
+    .exec(function(err, escuela){
+        if (err){
+            console.log("Error retrieving escuela");
+        }else {
+            res.json(escuela);
+        }
+    });
+});
+
+
+router.post('/escuela', function(req, res){
+    console.log('Post escuela');
+    var newEscuela = new Universidad();
+    newEscuela.nombreEscuela = req.body.nombreEscuela;
+    newEscuela.universidad = req.body.universidad;
+    newEscuela.programa = req.body.programa;
+    newEscuela.mallas = req.body.mallas; 
+    newEscuela.nombreMalla = req.body.nombreMalla;
+    newEscuela.materias = req.body.materias;    
+   
+
+    newEscuela.save(function(err, insertedEscuela){
+        if (err){
+            console.log('Error al guardar escuela');
+        }else{
+            res.json(insertedEscuela);
+        }
+    });
+});
+
+router.put('/escuela/:id', function(req, res){
+    console.log('Actualizar escuela');
+    Escuela.findByIdAndUpdate(req.params.id,
+    {
+        $set: {nombreEscuela: req.body.nombreEscuela, universidad: req.body.universidad, programa: req.body.programa, mallas: req.body.mallas,
+            nombreMalla: req.body.nombreMalla, materias: req.body.materias,}
+    },
+    {
+        new: true
+    },
+    function(err, updatedEscuela){
+        if(err){
+            res.send("Error al actualizar escuela");
+        }else{
+            res.json(updatedEscuela);
+        }
+    }
+
+    );
+});
+
+router.delete('/escuela/:id', function(req, res){
+    console.log('Deleting escuela');
+    Escuela.findByIdAndRemove(req.params.id, function(err, deletedEscuela){
+        if(err){
+            res.send("Error deleting escuela");
+        }else{
+            res.json(deletedEscuela);
+        }
+    });
+});
+
 
 
 module.exports = router; 
