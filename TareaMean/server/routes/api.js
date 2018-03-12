@@ -442,11 +442,22 @@ router.delete('/universidad/:id', function(req, res){
     });
 });
 
+
+//---------SIGNUP-------
+
+router.get('/signup', function(req, res){
+    console.log('Nombres de universidades completo');
+    Universidad.aggregate([{$project: {_id: 0,nombreUniversidad:1}}])
+    .exec(function(err, universidades){
+        if (err){
+            console.log("Error retrieving universidades");
+        }else {
+            res.json(universidades);
+        }
+    });
+});
+
 //---------USUARIO------
-
-
-
-
 
 
 module.exports = router; 
