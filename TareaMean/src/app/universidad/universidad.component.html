@@ -6,16 +6,13 @@
 			<form #form="ngForm" (ngSubmit)="onSubmitAddUniversidad(form.value)" class="well">
 				<div class="form-group">
 					<label>Nombre</label>
-					<input type="text" class="form-control" required name="nombre" ngModel>
+					<input type="text" class="form-control" required name="nombreUniversidad" ngModel>
 				</div>
 				<div class="form-group">
 					<label>Pais</label>
-					<input type="text" class="form-control" required name="pais" ngModel>
+					<input type="text" class="form-control" required name="paisUniversidad" ngModel>
 				</div>
-				<div class="form-group">
-					<label>Ciudad</label>
-					<input type="text" class="form-control" name="ciudad" ngModel>
-				</div>
+				
 				<button type="submit" class="btn btn-success">Guardar</button>
 			</form>
 		</div>

@@ -3,17 +3,13 @@
     <form> 
         <div *ngIf="editNombre" class="form-group">
             <input type="input" class="form-control" name="nombre" required placeholder="nombre"
-            [(ngModel)]="universidad.nombre">
+            [(ngModel)]="universidad.nombreUniversidad">
         </div>
-        <h3 *ngIf="!editNombre" (click)="onNombreClick()">{{universidad.nombre}}</h3>  
+        <h3 *ngIf="!editNombre" (click)="onNombreClick()">{{universidad.nombreUniversidad}}</h3>  
         <div class="form-group">
             <input type="input" class="form-control" name="pais" required placeholder="pais"
-            [(ngModel)]="universidad.pais">
+            [(ngModel)]="universidad.paisUniversidad">
         </div>
-        <div class="form-group">
-            <input type="input" class="form-control" name="ciudad" required placeholder="ciudad"
-            [(ngModel)]="universidad.ciudad">
-        </div> 
         <button type="button" (click)="updateUniversidad()" class="btn btn-primary">Actualizar</button>  
         <button type="button" (click)="deleteUniversidad()" class="btn btn-danger">Eliminar</button> 
           
