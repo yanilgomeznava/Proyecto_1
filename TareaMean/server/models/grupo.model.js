@@ -10,7 +10,7 @@ const grupoSchema = new Schema({
     anno: [Number],
     estudiantesInscritos: [{type:Schema.Types.ObjectId, ref:'usuario'}],
     horario: [{
-        dia: [Date],
+        dia: String,
     }],
     evaluacion: [{
         titulo: String,

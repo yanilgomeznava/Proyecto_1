@@ -104,7 +104,7 @@ router.delete('/materia/:id', function(req, res){
 
 router.get('/foros', function(req, res){
     console.log('Get request for all foros');
-    Foro.find({})
+    Foro.find({}).populate("materia")
     .exec(function(err, foros){
     	
         if (err){
@@ -117,7 +117,7 @@ router.get('/foros', function(req, res){
 
 router.get('/foros/:id', function(req, res){
     console.log('Get request for a unico foro');
-    Foro.findById(req.params.id)
+    Foro.findById(req.params.id).populate("materia")
     .exec(function(err, foro){
         if (err){
             console.log("Error retrieving foro");
@@ -183,7 +183,7 @@ router.delete('/foro/:id', function(req, res){
 //-------------GRUPO------------
 router.get('/grupos', function(req, res){
     console.log('Get request for all grupos');
-    Grupo.find({})
+    Grupo.find({}).populate("materia","usuario")
     .exec(function(err, grupos){
     	
         if (err){
@@ -196,7 +196,7 @@ router.get('/grupos', function(req, res){
 
 router.get('/grupos/:id', function(req, res){
     console.log('Get request for a unico grupo');
-    Grupo.findById(req.params.id)
+    Grupo.findById(req.params.id).populate("materia","usuario")
     .exec(function(err, grupo){
         if (err){
             console.log("Error retrieving grupo");
@@ -361,7 +361,7 @@ router.delete('/mensajeria/:id', function(req, res){
 
 router.get('/universidades', function(req, res){
     console.log('Get request for all universidades');
-    Universidad.find({})
+    Universidad.find({}).populate("materia")
     .exec(function(err, universidades){
     	
         if (err){
@@ -374,7 +374,7 @@ router.get('/universidades', function(req, res){
 
 router.get('/universidades/:id', function(req, res){
     console.log('Get request for a unica universidad');
-    Universidad.findById(req.params.id)
+    Universidad.findById(req.params.id).populate("materia")
     .exec(function(err, universidad){
         if (err){
             console.log("Error retrieving universidad");
@@ -443,6 +443,10 @@ router.delete('/universidad/:id', function(req, res){
 });
 
 //---------USUARIO------
+
+
+
+
 
 
 module.exports = router; 
