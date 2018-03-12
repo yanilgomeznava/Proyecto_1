@@ -1,7 +1,7 @@
 <doctype html>
 <html>
 <head>
-    <title>Node Authentication</title>
+    <title>Singup prototipo de Matricula</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
     <style>
@@ -18,16 +18,53 @@
 
     <!-- LOGIN FORM -->
     <form action="/signup" method="post">
+
         <div class="form-group">
-            <label>Username</label>
-            <input type="text" class="form-control" name="userName">
-        </div>
-        <div class="form-group">
-            <label>Password</label>
-            <input type="password" class="form-control" name="pass">
+            <label>Nombre</label>
+            <input type="text" class="form-control" name="nombre" required>
         </div>
 
-        <button type="submit" class="btn btn-warning btn-lg">Signup</button>
+        <div class="form-group">
+            <label>E-mail</label>
+            <input type="email" class="form-control" name="email" required>
+        </div>
+
+        <div class="form-group">
+            <label>Universidad</label>
+            <input type="text" class="form-control" name="universidad" required>
+        </div>
+
+        <div class="form-group">
+            <label>Carné</label>
+            <input type="text" class="form-control" name="carne" required>
+        </div>
+
+        <div class="form-group">
+            <label>Código de malla</label>
+            <input type="text" class="form-control" name="malla" required>
+        </div>
+
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" class="form-control" name="userName" required>
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" name="pass" required>
+        </div>
+
+        <div class="form-group">
+            <label>Tipo de cuenta</label>
+            <select>
+                <option value="true">Profesor</option>
+                <option value="false">Estudiante</option>
+            </select>
+        </div>
+
+        
+
+        <button type="submit" class="btn btn-warning btn-lg">Singup</button>
     </form>
 
     <hr>

@@ -3,32 +3,38 @@ var bcrypt   = require('bcrypt-nodejs');
 const Schema = mongoose.Schema;
 
 const usuarioSchema = new Schema({
-  usuarioName: {
+  nombre: {
     type: String,
-  //  required: true
+   //required: true
   },
   userName: {
     type: String,
-  //  required: true
+   // required: true
   },
   pass:{
     type: String,
-  //  required: true
+  // required: true
   },
-  usuarioApellidos: {
+  email:{
     type: String,
   //  required: true
   },
-  usuarioCarne: {
+  universidad: {
     type: String,
   //  required: true
   },
-  nombreMalla: [String],
+  carne: {
+    type: String,
+  //  required: true
+  },
+  malla: {
+    type: String,
+  //  required: true
+  },
   esProfesor: {
     type: Boolean,
   //  required: true
-  },
-  grupos: [{type:Schema.Types.ObjectId, ref:'grupo'}]
+  }
 });
 
 // generating a hash

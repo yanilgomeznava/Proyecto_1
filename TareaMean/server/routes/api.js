@@ -8,7 +8,7 @@ const Grupo = require('../models/grupo.model');
 const Mensajeria= require('../models/mensajeria.model');
 const Universidad = require('../models/universidad.model');
 const Usuario = require('../models/usuario.model');
-var passport = require('passport');
+
 
 const db = "mongodb://admin:1234@ds261828.mlab.com:61828/bdtarea";
 mongoose.Promise = global.Promise;
