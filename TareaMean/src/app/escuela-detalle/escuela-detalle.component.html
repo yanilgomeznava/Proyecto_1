@@ -8,7 +8,7 @@
       <h3 *ngIf="!editNombre" (click)="onNombreClick()">{{escuela.nombreEscuela}}</h3>  
 
       <div class="form-group" >
-            <label>Nombre Programa</label>
+            <label>Nombre Universidad</label>
             <select class="form-control" #select [(ngModel)]="escuela.universidad" 
                     name="universidad" (change)="onDropdown(select.value)">
                     <option *ngFor="let universidad of universidades" 
