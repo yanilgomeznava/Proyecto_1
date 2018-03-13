@@ -452,9 +452,8 @@ router.get('/signup', function(req, res){
 
 router.get('/escuelas', function(req, res){
     console.log('Get request for all escuelas');
-    Escuela.find({}).populate("universidad","materia")
+    Escuela.find({})
     .exec(function(err, escuelas){
-    	
         if (err){
             console.log("Error retrieving escuelas");
         }else {
@@ -465,7 +464,7 @@ router.get('/escuelas', function(req, res){
 
 router.get('/escuelas/:id', function(req, res){
     console.log('Get request for a unica escuela');
-    Escuela.findById(req.params.id).populate("universidad","materia")
+    Escuela.findById(req.params.id)
     .exec(function(err, escuela){
         if (err){
             console.log("Error retrieving escuela");
@@ -478,16 +477,20 @@ router.get('/escuelas/:id', function(req, res){
 
 router.post('/escuela', function(req, res){
     console.log('Post escuela');
-    var newEscuela = new Universidad();
+    var newEscuela = new Escuela();
+    console.log(req.body);
     newEscuela.nombreEscuela = req.body.nombreEscuela;
     newEscuela.universidad = req.body.universidad;
     newEscuela.programa = req.body.programa;
+    //newEscuela.nombreprograma = req.body.nombreprograma;
     newEscuela.mallas = req.body.mallas; 
-    newEscuela.nombreMalla = req.body.nombreMalla;
+    //newEscuela.nombreMalla = req.body.nombreMalla;
     newEscuela.materias = req.body.materias;    
-   
+    console.log(newEscuela);
 
     newEscuela.save(function(err, insertedEscuela){
+        console.log(err);
+        console.log(insertedEscuela);
         if (err){
             console.log('Error al guardar escuela');
         }else{
@@ -500,7 +503,7 @@ router.put('/escuela/:id', function(req, res){
     console.log('Actualizar escuela');
     Escuela.findByIdAndUpdate(req.params.id,
     {
-        $set: {nombreEscuela: req.body.nombreEscuela, universidad: req.body.universidad, programa: req.body.programa, mallas: req.body.mallas,
+        $set: {nombreEscuela: req.body.nombreEscuela, universidad: req.body.universidad, programa: req.body.programa, nombreprograma: req.body.nombreprograma, mallas: req.body.mallas,
             nombreMalla: req.body.nombreMalla, materias: req.body.materias,}
     },
     {
