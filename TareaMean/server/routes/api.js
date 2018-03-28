@@ -8,6 +8,8 @@ const Grupo = require('../models/grupo.model');
 const Mensajeria= require('../models/mensajeria.model');
 const Universidad = require('../models/universidad.model');
 const Usuario = require('../models/usuario.model');
+const Profesor = require('../models/usuario.model');
+const Estudiante = require('../models/usuario.model');
 const Escuela = require('../models/escuela.model');
 
 
@@ -434,19 +436,6 @@ router.delete('/universidad/:id', function(req, res){
 });
 
 
-//---------SIGNUP-------
-
-router.get('/signup', function(req, res){
-    console.log('Nombres de universidades completo');
-    Universidad.aggregate([{$project: {_id: 0,nombreUniversidad:1}}])
-    .exec(function(err, universidades){
-        if (err){
-            console.log("Error retrieving universidades");
-        }else {
-            res.json(universidades);
-        }
-    });
-});
 
 //---------Escuela------
 
@@ -527,6 +516,171 @@ router.delete('/escuela/:id', function(req, res){
             res.send("Error deleting escuela");
         }else{
             res.json(deletedEscuela);
+        }
+    });
+});
+
+
+
+// ------------- Profesor -------------
+
+router.get('/profesores', function(req, res){
+    console.log('Get request for all profesores');
+    Profesor.aggregate([ { $match : { esProfesor : true } } ])
+    .exec(function(err, profesores){
+    	
+        if (err){
+            console.log("Error retrieving profesores");
+        }else {
+            res.json(profesores);
+        }
+    });
+});
+
+router.get('/profesores/:id', function(req, res){
+    console.log('Get request for a unica profesor');
+    Profesor.findById(req.params.id)
+    .exec(function(err, profesor){
+        if (err){
+            console.log("Error retrieving profesor");
+        }else {
+            res.json(profesor);
+        }
+    });
+});
+
+
+router.post('/profesor', function(req, res){
+    console.log('Post profesor');
+    var newProfesor = new Profesor();
+    newProfesor.nombre = req.body.nombre;
+    newProfesor.userName = req.body.userName;
+    newProfesor.pass = req.body.pass;
+    newProfesor.email = req.body.email;
+    newProfesor.universidad = req.body.universidad;
+    newProfesor.carne = req.body.carne;
+    newProfesor.malla = req.body.malla;
+    newProfesor.esProfesor = req.body.esProfesor;
+
+    newProfesor.save(function(err, insertedProfesor){
+        if (err){
+            console.log('Error al guardar profesor');
+        }else{
+            res.json(insertedProfesor);
+        }
+    });
+});
+
+router.put('/profesor/:id', function(req, res){
+    console.log('Actualizar profesor');
+    Profesor.findByIdAndUpdate(req.params.id,
+    {
+        $set: {nombre: req.body.nombre, userName: req.body.userName, pass: req.body.pass, email: req.body.email, universidad: req.body.universidad,
+        carne: req.body.carne, malla: req.body.malla, esProfesor: req.body.esProfesor}
+    },
+    {
+        new: true
+    },
+    function(err, updatedProfesor){
+        if(err){
+            res.send("Error al actualizar profesor");
+        }else{
+            res.json(updatedProfesor);
+        }
+    }
+
+    );
+});
+
+router.delete('/profesor/:id', function(req, res){
+    console.log('Deleting a profesor');
+    Profesor.findByIdAndRemove(req.params.id, function(err, deletedProfesor){
+        if(err){
+            res.send("Error deleting profesor");
+        }else{
+            res.json(deletedProfesor);
+        }
+    });
+});
+
+
+// ------------- Estudiante -------------
+
+router.get('/estudiantes', function(req, res){
+    console.log('Get request for all estudiantes');
+    Estudiante.aggregate([ { $match : { esProfesor : false } } ])
+    .exec(function(err, estudiantes){
+    	
+        if (err){
+            console.log("Error retrieving estudiante");
+        }else {
+            res.json(estudiantes);
+        }
+    });
+});
+
+router.get('/estudiantes/:id', function(req, res){
+    console.log('Get request for a unico estudiante');
+    Estudiante.findById(req.params.id)
+    .exec(function(err, estudiante){
+        if (err){
+            console.log("Error retrieving estudiante");
+        }else {
+            res.json(estudiante);
+        }
+    });
+});
+
+
+router.post('/estudiante', function(req, res){
+    console.log('Post estudiante');
+    var newEstudiante = new Estudiante();
+    newEstudiante.nombre = req.body.nombre;
+    newEstudiante.userName = req.body.userName;
+    newEstudiante.pass = req.body.pass;
+    newEstudiante.email = req.body.email;
+    newEstudiante.universidad = req.body.universidad;
+    newEstudiante.carne = req.body.carne;
+    newEstudiante.malla = req.body.malla;
+    newEstudiante.esProfesor = req.body.esEstudiante;
+
+    newEstudiante.save(function(err, insertedEstudiante){
+        if (err){
+            console.log('Error al guardar estudiante');
+        }else{
+            res.json(insertedEstudiante);
+        }
+    });
+});
+
+router.put('/estudiante/:id', function(req, res){
+    console.log('Actualizar estudiante');
+    Estudiante.findByIdAndUpdate(req.params.id,
+    {
+        $set: {nombre: req.body.nombre, userName: req.body.userName, pass: req.body.pass, email: req.body.email, universidad: req.body.universidad,
+        carne: req.body.carne, malla: req.body.malla, esProfesor: req.body.esProfesor}
+    },
+    {
+        new: true
+    },
+    function(err, updatedEstudiante){
+        if(err){
+            res.send("Error al actualizar estudiante");
+        }else{
+            res.json(updatedEstudiante);
+        }
+    }
+
+    );
+});
+
+router.delete('/estudiante/:id', function(req, res){
+    console.log('Deleting a estudiante');
+    Estudiante.findByIdAndRemove(req.params.id, function(err, deletedEstudiante){
+        if(err){
+            res.send("Error deleting estudiante");
+        }else{
+            res.json(deletedEstudiante);
         }
     });
 });

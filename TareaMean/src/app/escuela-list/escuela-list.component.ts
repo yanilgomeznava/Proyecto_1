@@ -10,7 +10,8 @@ import { Escuela } from '../escuela';
 })
 export class EscuelaListComponent implements OnInit {
 
-  public SelectEscuela = new EventEmitter();
+public SelectEscuela = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
@@ -19,5 +20,6 @@ export class EscuelaListComponent implements OnInit {
   onSelect(vid: Escuela){
     this.SelectEscuela.emit(vid);
   }
+
 
 }

@@ -30,6 +30,7 @@
 		<materia-detalle (updateMateriaEvent) = "onUpdateMateriaEvent($event)" 
 							(deleteMateriaEvent) = "onDeleteMateriaEvent($event)" *ngIf="selectedMateria && hidenewMateria" [materia]="selectedMateria"></materia-detalle>		
 	</div>
+	
 	<div class="col-sm-3">
 		<button  (click)="newMateria()"style="margin-bottom:2px;" type="button" class="btn btn-success btn-block">Agregar</button>
 		<materia-list (SelectMateria)="onSelectMateria($event)" [materias]="materias"></materia-list>

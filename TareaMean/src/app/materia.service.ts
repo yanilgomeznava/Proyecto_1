@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { HttpModule } from '@angular/http';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import { Materia } from './materia';
 
@@ -40,6 +38,7 @@ export class MateriaService {
     return this._http.delete(this._deleteUrl + materia._id)
       .map((response: Response) => response.json());
   }
+  
   
 
 }

@@ -1,9 +1,9 @@
 export class Materia {
-    _id: string;
-    nombreMateria: string;
-    codigoMateria: string;
+    _id: String;
+    nombre: String;
+    codigo: String;
     nombreMalla: [String];
-    temasMateria: [{
+    temas: [{
         tituloTema: String,
-        tituloSubtema: [String]}];
+        tituloSubtema: [String], }];
     }

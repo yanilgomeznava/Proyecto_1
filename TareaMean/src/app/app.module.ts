@@ -15,10 +15,13 @@ import { UniversidadDetalleComponent } from './universidad-detalle/universidad-d
 import { EscuelaComponent } from './escuela/escuela.component';
 import { EscuelaListComponent } from './escuela-list/escuela-list.component';
 import { EscuelaDetalleComponent } from './escuela-detalle/escuela-detalle.component';
-
 import { MateriaComponent } from './materia/materia.component';
 import { MateriaDetalleComponent } from './materia-detalle/materia-detalle.component';
 import { MateriaListComponent } from './materia-list/materia-list.component';
+import { ProfesorComponent } from './profesor/profesor.component';
+import { ProfesorDetalleComponent } from './profesor-detalle/profesor-detalle.component';
+import { ProfesorListComponent } from './profesor-list/profesor-list.component';
+
 
 
 
@@ -33,11 +36,14 @@ import { MateriaListComponent } from './materia-list/materia-list.component';
     EscuelaComponent,
     EscuelaListComponent,
     EscuelaDetalleComponent,
-
-    //EscuelaComponent,
     MateriaComponent,
     MateriaDetalleComponent,
-    MateriaListComponent
+    MateriaListComponent,
+    ProfesorComponent,
+    ProfesorDetalleComponent,
+    ProfesorListComponent,
+
+   
   ],
   imports: [
     BrowserModule,

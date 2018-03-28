@@ -1,5 +1,5 @@
-import {Materia} from './../materia';
 import { Component, OnInit, EventEmitter } from '@angular/core';
+import {Materia} from '../materia';
 
 @Component({
   selector: 'materia-list',
@@ -18,7 +18,8 @@ public SelectMateria = new EventEmitter();
   }
 
   onSelect(vid: Materia){
-  this.SelectMateria.emit(vid);
+    this.SelectMateria.emit(vid);
   }
+
 
 }
