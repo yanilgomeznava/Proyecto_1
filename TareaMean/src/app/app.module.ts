@@ -21,6 +21,9 @@ import { MateriaListComponent } from './materia-list/materia-list.component';
 import { ProfesorComponent } from './profesor/profesor.component';
 import { ProfesorDetalleComponent } from './profesor-detalle/profesor-detalle.component';
 import { ProfesorListComponent } from './profesor-list/profesor-list.component';
+import { EstudianteComponent } from './estudiante/estudiante.component';
+import { EstudianteDetalleComponent } from './estudiante-detalle/estudiante-detalle.component';
+import { EstudianteListComponent } from './estudiante-list/estudiante-list.component';
 
 
 
