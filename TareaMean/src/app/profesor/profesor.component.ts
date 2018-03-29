@@ -1,7 +1,7 @@
 import { ProfesorService } from './../profesor.service';
 import { Profesor } from './../profesor';
-import { Universidad } from '../universidad';
 import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-profesor',
@@ -13,7 +13,6 @@ export class ProfesorComponent implements OnInit {
 
 
 profesores: Array<Profesor>;
-universidades: Array<Universidad>;
 
   selectedProfesor: Profesor;
   private hidenewProfesor: boolean = true;
@@ -23,8 +22,6 @@ universidades: Array<Universidad>;
   ngOnInit() {
     this._profesorService.getProfesores()
       .subscribe(resProfesorData => this.profesores = resProfesorData )
-      this._profesorService.getUniversidades()
-      .subscribe(resUniversidadData => this.universidades = resUniversidadData)
   }
 
   onSelectProfesor(profesor: any){

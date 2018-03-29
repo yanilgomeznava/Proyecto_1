@@ -52,6 +52,7 @@ export class EscuelaComponent implements OnInit {
       });
 
   }
+  
 
   onUpdateEscuelaEvent(escuela: any) {
     this._escuelaService.updateEscuela(escuela)

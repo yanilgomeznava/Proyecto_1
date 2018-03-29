@@ -2,11 +2,13 @@
 <div>
     <form> 
         <div *ngIf="editNombre" class="form-group">
+            <label>Nombre</label>
             <input type="input" class="form-control" name="nombre" required placeholder="nombre"
             [(ngModel)]="universidad.nombreUniversidad">
         </div>
         <h3 *ngIf="!editNombre" (click)="onNombreClick()">{{universidad.nombreUniversidad}}</h3>  
         <div class="form-group">
+            <label>Pais</label>
             <input type="input" class="form-control" name="pais" required placeholder="pais"
             [(ngModel)]="universidad.paisUniversidad">
         </div>

@@ -31,6 +31,7 @@ export class EscuelaDetalleComponent implements OnInit {
   }
 
   ngOnChanges(){
+    
     this.editNombre=false;
     }
   
