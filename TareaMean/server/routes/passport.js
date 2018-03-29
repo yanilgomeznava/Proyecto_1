@@ -42,6 +42,7 @@ module.exports = function (passport) {
         universidadField: 'universidad',
         carneField: 'carne',
         mallaField: 'malla',
+        esProfesorField: 'esProfesor',
         usernameField: 'userName',
         passwordField: 'pass',
         passReqToCallback: true // allows us to pass back the entire request to the callback
@@ -70,12 +71,19 @@ module.exports = function (passport) {
 
                         // set the user's local credentials
                         newUser.userName = userName;
+                        newUser.nombre = req.body.nombre;
                         newUser.pass = newUser.generateHash(password);
                         newUser.universidad = req.body.universidad;
                         newUser.email = req.body.email;
                         newUser.malla = req.body.malla;
-                        newUser.esProfesor = req.body.esProfesor;
-                        newUser.carne = req.body.carne;
+                        newUser.carne = req.body.carne;                        
+                        if (req.body.esProfesor == "Profesor"){
+                            newUser.esProfesor = true;
+                        }
+                        else{
+                            newUser.esProfesor = false;
+                        }
+                        
 
                         // save the user
                         newUser.save(function (err) {
@@ -83,6 +91,7 @@ module.exports = function (passport) {
                                 throw err;
                             return done(null, newUser);
                         });
+
                     }
 
                 });

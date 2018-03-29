@@ -35,6 +35,7 @@ const usuarioSchema = new Schema({
     type: Boolean,
   //  required: true
   }
+  
 });
 
 // generating a hash

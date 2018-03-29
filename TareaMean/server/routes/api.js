@@ -560,7 +560,7 @@ router.post('/profesor', function(req, res){
     newProfesor.universidad = req.body.universidad;
     newProfesor.carne = req.body.carne;
     newProfesor.malla = req.body.malla;
-    newProfesor.esProfesor = req.body.esProfesor;
+    //newProfesor.esProfesor = true;
 
     newProfesor.save(function(err, insertedProfesor){
         if (err){
