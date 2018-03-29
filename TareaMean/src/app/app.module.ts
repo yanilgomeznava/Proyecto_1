@@ -42,6 +42,9 @@ import { ProfesorListComponent } from './profesor-list/profesor-list.component';
     ProfesorComponent,
     ProfesorDetalleComponent,
     ProfesorListComponent,
+    EstudianteComponent,
+    EstudianteDetalleComponent,
+    EstudianteListComponent,
 
    
   ],
