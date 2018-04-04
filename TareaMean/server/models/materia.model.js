@@ -12,7 +12,7 @@ const materiaSchema = new Schema({
       required: true
     },
     nombreMalla: [String],
-    temasMateria:[{
+    temas:[{
       tituloTema: String,
       tituloSubtema: [String],
       }]

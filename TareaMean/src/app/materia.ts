@@ -1,9 +1,20 @@
 export class Materia {
     _id: String;
-    nombre: String;
-    codigo: String;
-    nombreMalla: [String];
-    temas: [{
-        tituloTema: String,
-        tituloSubtema: [String], }];
+    nombreMateria: String;
+    codigoMateria: String;
+    nombreMalla: Array<nombreMalla>;
+    }
+
+    export class nombreMalla{
+        nombreMalla: String;
+        temas: Array<temas>;
+    }
+
+    export class temas {
+        tituloTema: String;
+        tituloSubtema: Array<tituloSubtema>;
+    }
+
+    export class tituloSubtema{
+        tituloSubtema: String;
     }
