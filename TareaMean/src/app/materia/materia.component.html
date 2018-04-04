@@ -16,16 +16,7 @@
 					<label>Malla</label>
 					<input type="text" class="form-control" required name="nombreMalla" ngModel>
 				</div>
-				<div class="form-group">
-					<label>Tema</label>
-					<input type="text" class="form-control" required name="tituloTema" ngModel>
-				</div>
-				<div class="form-group">
-					<label>SubTema</label>
-					<input type="text" class="form-control" required name="tituloSubtema" ngModel>
-				</div>
-				<button type="submit" class="btn btn-success">Guardar</button>
-			</form>
+				</form>
 		</div>
 		<materia-detalle (updateMateriaEvent) = "onUpdateMateriaEvent($event)" 
 							(deleteMateriaEvent) = "onDeleteMateriaEvent($event)" *ngIf="selectedMateria && hidenewMateria" [materia]="selectedMateria"></materia-detalle>		

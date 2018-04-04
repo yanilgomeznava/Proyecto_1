@@ -1,14 +1,9 @@
-
 <div class="row">
-	<div class ="col-sm-9">
-		<estudiante-detalle (updateEstudianteEvent) = "onUpdateEstudianteEvent($event)" 
-							(deleteEstudianteEvent) = "onDeleteEstudianteEvent($event)" *ngIf="selectedEstudiante && hidenewEstudiante" [estudiante]="selectedEstudiante"></estudiante-detalle>		
+		<div class="col-sm-9">
+			<estudiante-detalle (updateEstudianteEvent)="onUpdateEstudianteEvent($event)" (deleteEstudianteEvent)="onDeleteEstudianteEvent($event)"
+			 *ngIf="selectedEstudiante && hidenewEstudiante" [estudiante]="selectedEstudiante" [universidades]="universidades"></estudiante-detalle>
+		</div>
+		<div class="col-sm-3">
+			<estudiante-list (SelectEstudiante)="onSelectEstudiante($event)" [estudiantes]="estudiantes"></estudiante-list>
+		</div>
 	</div>
-	
-	<div class="col-sm-3">
-		<estudiante-list (SelectEstudiante)="onSelectEstudiante($event)" [estudiantes]="estudiantes"></estudiante-list>
-	</div>
-</div>
-
-
-			

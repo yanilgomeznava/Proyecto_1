@@ -1,55 +1,60 @@
-
 <div>
-        <form method="post"> 
-            <div *ngIf="editNombre" class="form-group">
-                <label>User Name</label>
-                <input type="input" class="form-control" name="userName" required placeholder="userName"
-                [(ngModel)]="profesor.userName">
+    <form method="post"> 
+        <div *ngIf="editNombre" class="form-group">
+            <label>User Name</label>
+            <input type="input" class="form-control" name="userName" required placeholder="userName"
+            [(ngModel)]="profesor.userName">
+        </div>
+        <h3 *ngIf="!editNombre" (click)="onNombreClick()">{{profesor.userName}}</h3>  
+        <div class="form-group">
+                <label>Nombre</label>
+                <input type="input" class="form-control" name="nombre" required placeholder="Nombre"
+                [(ngModel)]="profesor.nombre">
             </div>
-            <h3 *ngIf="!editNombre" (click)="onNombreClick()">{{profesor.userName}}</h3>  
-            <div class="form-group">
-                    <label>Nombre</label>
-                    <input type="input" class="form-control" name="nombre" required placeholder="Nombre"
-                    [(ngModel)]="profesor.nombre">
-                </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="input" class="form-control" name="pass" required placeholder="Password"
-                [(ngModel)]="profesor.pass">
+        <div class="form-group">
+            <label>Password</label>
+            <input type="input" class="form-control" name="pass" required placeholder="Password"
+            [(ngModel)]="profesor.pass">
+        </div>
+        <div class="form-group">
+            <label>E-mail</label>
+                <input type="email" class="form-control" name="email" required placeholder="E-mail"
+                [(ngModel)]="profesor.email">
+        </div>
+        
+        <div class="form-group">
+            <label>Carné</label>
+                <input type="input" class="form-control" name="carne" required placeholder="Carné"
+                [(ngModel)]="profesor.carne">
+        </div>
+        
+        <div class="form-group" >
+                <label>Es Profesor</label>
+                <select class="form-control" #select [(ngModel)]="profesor.esProfesor" 
+                        name="es Profesor">
+                        <option value="true">Si</option>
+                        <option value="false">No</option>
+                </select>
+          </div>
+        
+        <div class="form-group">
+                <label>Universidad</label>
+                <select class="form-control" #select [(ngModel)]="profesor.universidad" name="universidad" (change)="onDropdown(select.value)">
+                    <option *ngFor="let universidad of universidades" [value]="universidad.nombreUniversidad">{{universidad.nombreUniversidad}}</option>
+                </select>
             </div>
-            <div class="form-group">
-                <label>E-mail</label>
-                    <input type="email" class="form-control" name="email" required placeholder="E-mail"
-                    [(ngModel)]="profesor.email">
-            </div>
-            
-            <div class="form-group">
-                <label>Carné</label>
-                    <input type="input" class="form-control" name="carne" required placeholder="Carné"
-                    [(ngModel)]="profesor.carne">
-            </div>
-            <div class="form-group">
-                    <label>Universidad</label>
-                    <input type="input" class="form-control" name="universidad" required placeholder="Universidad"
-                    [(ngModel)]="profesor.universidad">
-            </div>
-            <div class="form-group">
-                <label>Malla</label>
-                    <input type="input" class="form-control" name="malla" required placeholder="Malla"
-                    [(ngModel)]="profesor.malla">
-            </div>
-            <div class="form-group" >
-                    <label>Es Profesor</label>
-                    <select class="form-control" #select [(ngModel)]="profesor.esProfesor" 
-                            name="es Profesor">
-                            <option value="true">Si</option>
-                            <option value="false">No</option>
-                    </select>
-              </div>
 
-            <button type="button" (click)="updateProfesor()" class="btn btn-primary">Actualizar</button>  
-            <button type="button" (click)="deleteProfesor()" class="btn btn-danger">Eliminar</button> 
-              
 
-        </form>
-    </div>
+        <div class="form-group">
+            <label>Malla</label>
+                <input type="input" class="form-control" name="malla" required placeholder="Malla"
+                [(ngModel)]="profesor.malla">
+        </div>
+        
+
+        <button type="button" (click)="updateProfesor()" class="btn btn-primary">Actualizar</button>  
+        <button type="button" (click)="deleteProfesor()" class="btn btn-danger">Eliminar</button> 
+          
+
+    </form>
+</div>

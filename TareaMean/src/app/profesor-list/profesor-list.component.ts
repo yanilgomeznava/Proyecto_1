@@ -1,12 +1,12 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
-import {Profesor} from '../profesor';
+import { Profesor } from '../profesor';
 
 @Component({
   selector: 'profesor-list',
   templateUrl: './profesor-list.component.html',
   styleUrls: ['./profesor-list.component.css'],
   inputs: ['profesores'],
-  outputs: ['SelectProfesor']
+  outputs:['SelectProfesor']
 })
 export class ProfesorListComponent implements OnInit {
 

@@ -1,14 +1,9 @@
-
 <div class="row">
-	<div class ="col-sm-9">
-		<profesor-detalle (updateProfesorEvent) = "onUpdateProfesorEvent($event)" 
-							(deleteProfesorEvent) = "onDeleteProfesorEvent($event)" *ngIf="selectedProfesor && hidenewProfesor" [profesor]="selectedProfesor"></profesor-detalle>		
+		<div class="col-sm-9">
+			<profesor-detalle (updateProfesorEvent)="onUpdateProfesorEvent($event)" (deleteProfesorEvent)="onDeleteProfesorEvent($event)"
+			 *ngIf="selectedProfesor && hidenewProfesor" [profesor]="selectedProfesor" [universidades]="universidades"></profesor-detalle>
+		</div>
+		<div class="col-sm-3">
+			<profesor-list (SelectProfesor)="onSelectProfesor($event)" [profesores]="profesores"></profesor-list>
+		</div>
 	</div>
-	
-	<div class="col-sm-3">
-		<profesor-list (SelectProfesor)="onSelectProfesor($event)" [profesores]="profesores"></profesor-list>
-	</div>
-</div>
-
-
-			
