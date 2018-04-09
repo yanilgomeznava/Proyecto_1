@@ -53,6 +53,8 @@ router.get('/materias/:id', function(req, res){
 router.post('/materia', function(req, res){
     console.log('Post materia');
     var newMateria = new Materia();
+    newMateria.universidad = req.body.universidad;
+    newMateria.carrera = req.body.carrera;
     newMateria.nombreMateria = req.body.nombreMateria;
     newMateria.codigoMateria = req.body.codigoMateria;
     newMateria.nombreMalla = req.body.nombreMalla;
@@ -72,7 +74,7 @@ router.put('/materia/:id', function(req, res){
     console.log('Actualizar materia');
     Materia.findByIdAndUpdate(req.params.id,
     {
-        $set: {nombreMateria: req.body.nombreMateria, codigoMateria: req.body.codigoMateria, nombreMalla: req.body.nombreMalla,
+        $set: {universidad:  req.body.universidad, carrera: req.body.carrera, nombreMateria: req.body.nombreMateria, codigoMateria: req.body.codigoMateria, nombreMalla: req.body.nombreMalla,
             temas: req.body.temas,tituloSubtema: req.body.tituloSubtema}
     },
     {

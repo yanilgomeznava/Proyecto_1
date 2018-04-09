@@ -1,5 +1,7 @@
 export class Materia {
     _id: String;
+    universidad: String;
+    carrera: String;
     nombreMateria: String;
     codigoMateria: String;
     nombreMalla: Array<nombreMalla>;

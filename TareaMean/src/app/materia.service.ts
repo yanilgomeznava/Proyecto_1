@@ -20,6 +20,10 @@ export class MateriaService {
 		.map((response: Response) => response.json());
 	}
 
+	getUniversidades(){
+		return this._http.get("/api/universidades")
+		.map((response: Response) => response.json());
+  	}
 	addMateria(materia: Materia) {
     	let headers = new Headers({ 'Content-Type': 'application/json' });
     	let options = new RequestOptions({ headers: headers });

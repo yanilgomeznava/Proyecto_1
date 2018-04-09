@@ -6,11 +6,14 @@ import { Materia } from './../materia';
   selector: 'materia-detalle',
   templateUrl: './materia-detalle.component.html',
   styleUrls: ['./materia-detalle.component.css'],
-  inputs: ['materia'],
+  inputs: ['materia', 'universidades', 'escuela'],
   outputs : ['updateMateriaEvent', 'deleteMateriaEvent']
 })
 export class MateriaDetalleComponent implements OnInit {
+    escuela:any;
     materia: any;
+    universidades: any;
+    universidad: any;
 	
   private editNombre: boolean = false;
   private updateMateriaEvent = new EventEmitter();
@@ -20,6 +23,12 @@ export class MateriaDetalleComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    for (let u of this.universidades) {
+      if (u._id == this.escuela.universidad) {
+        this.universidad = u;
+        break;
+      }
+    }
   }
 
   ngOnChanges(){
@@ -38,5 +47,8 @@ export class MateriaDetalleComponent implements OnInit {
   this.deleteMateriaEvent.emit(this.materia);
 }
 
+onDropdown(u: any) {
+  this.escuela.universidad = u;
+};
 
 }

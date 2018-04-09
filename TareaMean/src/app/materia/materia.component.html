@@ -4,6 +4,28 @@
 		<div *ngIf="!hidenewMateria">
 			<h2>Nueva Materia</h2>
 			<form #form="ngForm" (ngSubmit)="onSubmitAddMateria(form.value)" class="well">
+				<div>
+					<label>Universidad</label>
+					<select name="universidad" ngModel>
+						<option *ngFor="let universidad of universidades" [value]="universidad._id">
+							{{universidad.nombreUniversidad}}</option>
+					</select>
+				</div>
+				<div>
+						<label>Carrera</label>
+						<select name="carrera" ngModel>
+							<!-- <option *ngFor="let universidad of universidades" [value]="universidad._id">
+								{{universidad.nombreUniversidad}}</option> -->
+						</select>
+					</div>
+
+					<div class="form-group">
+							<label>Mallas:</label>
+							<!-- <select *ngIf="programaSeleccionado" #selectPrograma [(ngModel)]="mallaSeleccionadoNombre" [ngModelOptions]="{standalone: true}">
+								<option *ngFor="let malla of programaSeleccionado.mallas" [value]="malla.nombreMalla">{{malla.nombreMalla}}
+								</option>
+							</select> -->
+						</div>
 				<div class="form-group">
 					<label>Nombre</label>
 					<input type="text" class="form-control" required name="nombreMateria" ngModel>
@@ -12,10 +34,8 @@
 					<label>Codigo</label>
 					<input type="text" class="form-control" required name="codigoMateria" ngModel>
 				</div>
-				<div class="form-group">
-					<label>Malla</label>
-					<input type="text" class="form-control" required name="nombreMalla" ngModel>
-				</div>
+
+				<button type="submit" class="btn btn-success">Guardar</button>
 				</form>
 		</div>
 		<materia-detalle (updateMateriaEvent) = "onUpdateMateriaEvent($event)" 
@@ -23,7 +43,7 @@
 	</div>
 	
 	<div class="col-sm-3">
-		<button  (click)="newMateria()"style="margin-bottom:2px;" type="button" class="btn btn-success btn-block">Agregar</button>
+		<button  (click)="newMateria()" style="margin-bottom:2px;" type="button" class="btn btn-success btn-block">Agregar</button>
 		<materia-list (SelectMateria)="onSelectMateria($event)" [materias]="materias"></materia-list>
 	</div>
 </div>
