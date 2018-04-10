@@ -1,0 +1,45 @@
+<div class="col-md-6">
+  <form>
+      <div *ngIf="editNombre" class="form-group">
+          <input type="input" class="form-control" name="grupo" required placeholder="Nombre" ngModel>
+      </div>
+      <h3 *ngIf="!editNombre" (click)="onNombreClick()">{{foro.grupo}}</h3>
+
+
+      <div class="form-group">
+          <label>Tema</label>
+          <select #selectTema [(ngModel)]="temaSeleccionadoNombre" (change)="onChangeTema(selecttema.value)" [ngModelOptions]="{standalone: true}">
+              <option *ngFor="let tema of foro.tema " [value]="tema.nombreTema">{{tema.temaTitulo}}
+              </option>
+          </select>
+      </div>
+
+      <form #form1="ngForm" (ngSubmit)="onAgregarNuevoTema(form1.value)">
+              <input type="text" class="form-control" required name="temaTitulo" placeholder="Nuevo Tema" ngModel>
+              <button type="submit" class="btn btn-success">Agregar titulo de tema</button>
+              <button type="button" (click)="deleteTema()" class="btn btn-primary">Eliminar titulo de tema</button>
+          </form>
+
+      <div class="form-group">
+              <label>post del foro seleccionado:</label>
+              <select *ngIf="temaSeleccionado" #selectTema [(ngModel)]="postSeleccionadoNombre" [ngModelOptions]="{standalone: true}">
+                  <option *ngFor="let post of temaSeleccionado.posts" [value]="post.tituloPost">{{post.tituloPost}}
+                  </option>
+              </select>
+          </div>
+
+          <form #formNuevaPost="ngForm" (ngSubmit)="onAgregarNuevaPost(formNuevaPost.value)">
+                  <input type="text" class="form-control" required name="tituloPost" placeholder="Nueva Post" ngModel>
+                  <button type="submit" class="btn btn-success">Agregar Post</button>
+                  <button type="button" (click)="deletePost(formNuevaPost)" class="btn btn-primary">Eliminar Post</button>
+              </form>
+
+
+
+
+
+      <button type="button" (click)="updateForo()" class="btn btn-primary">Actualizar</button>
+      <button type="button" (click)="deleteForo()" class="btn btn-danger">Eliminar</button>
+
+  </form>
+</div>

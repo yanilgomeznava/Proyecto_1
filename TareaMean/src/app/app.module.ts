@@ -24,6 +24,9 @@ import { ProfesorListComponent } from './profesor-list/profesor-list.component';
 import { EstudianteComponent } from './estudiante/estudiante.component';
 import { EstudianteDetalleComponent } from './estudiante-detalle/estudiante-detalle.component';
 import { EstudianteListComponent } from './estudiante-list/estudiante-list.component';
+import { ForoComponent } from './foro/foro.component';
+import { ForolistComponent } from './forolist/forolist.component';
+import { ForodetalleComponent } from './forodetalle/forodetalle.component';
 
 
 
@@ -48,6 +51,9 @@ import { EstudianteListComponent } from './estudiante-list/estudiante-list.compo
     EstudianteComponent,
     EstudianteDetalleComponent,
     EstudianteListComponent,
+    ForoComponent,
+    ForolistComponent,
+    ForodetalleComponent,
 
    
   ],
