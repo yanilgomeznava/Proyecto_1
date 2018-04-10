@@ -26,6 +26,7 @@ export class EscuelaDetalleComponent implements OnInit {
 
   ngOnInit() {
     for (let u of this.universidades) {
+      
       if (u._id == this.escuela.universidad) {
         this.universidad = u;
         break;

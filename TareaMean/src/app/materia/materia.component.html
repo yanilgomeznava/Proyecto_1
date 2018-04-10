@@ -1,31 +1,40 @@
-
 <div class="row">
-	<div class ="col-sm-9">
+	<div class="col-sm-9">
 		<div *ngIf="!hidenewMateria">
 			<h2>Nueva Materia</h2>
 			<form #form="ngForm" (ngSubmit)="onSubmitAddMateria(form.value)" class="well">
 				<div>
 					<label>Universidad</label>
-					<select name="universidad" ngModel>
+					<select name="universidad" #select ngModel  (change)="onSelectUniversidad(select.value)">
 						<option *ngFor="let universidad of universidades" [value]="universidad._id">
 							{{universidad.nombreUniversidad}}</option>
 					</select>
 				</div>
-				<div>
-						<label>Carrera</label>
-						<select name="carrera" ngModel>
-							<!-- <option *ngFor="let universidad of universidades" [value]="universidad._id">
-								{{universidad.nombreUniversidad}}</option> -->
-						</select>
-					</div>
 
-					<div class="form-group">
-							<label>Mallas:</label>
-							<!-- <select *ngIf="programaSeleccionado" #selectPrograma [(ngModel)]="mallaSeleccionadoNombre" [ngModelOptions]="{standalone: true}">
-								<option *ngFor="let malla of programaSeleccionado.mallas" [value]="malla.nombreMalla">{{malla.nombreMalla}}
-								</option>
-							</select> -->
-						</div>
+
+				<div>
+					<label>Escuela</label>
+					<select name="escuela" #select1 ngModel (change)="onSelectEscuela(select1.value)">
+						<option *ngFor="let escuela of escuelasUniversidad" [value]="escuela._id">
+							{{escuela.nombreEscuela}}</option>
+					</select>
+				</div>
+
+				<div>
+					<label>Carrera</label>
+					<select *ngIf="escuela" #select2 name="carrera" ngModel (change)="onSelectCarrera(select2.value)">
+						<option *ngFor="let programa of escuela.programa" [value]="programa.nombrePrograma">
+								{{programa.nombrePrograma}}</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label>Mallas:</label>
+					<select *ngIf="carreraSelected" #select3 name="malla" ngModel (change)="onSelectMalla(select3.value)">
+							<option *ngFor="let malla of carreraSelected.mallas" [value]="malla.nombreMalla">
+									{{malla.nombreMalla}}</option>
+						</select>
+				</div>
 				<div class="form-group">
 					<label>Nombre</label>
 					<input type="text" class="form-control" required name="nombreMateria" ngModel>
@@ -36,17 +45,14 @@
 				</div>
 
 				<button type="submit" class="btn btn-success">Guardar</button>
-				</form>
+			</form>
 		</div>
-		<materia-detalle (updateMateriaEvent) = "onUpdateMateriaEvent($event)" 
-							(deleteMateriaEvent) = "onDeleteMateriaEvent($event)" *ngIf="selectedMateria && hidenewMateria" [materia]="selectedMateria"></materia-detalle>		
+		<materia-detalle (updateMateriaEvent)="onUpdateMateriaEvent($event)" (deleteMateriaEvent)="onDeleteMateriaEvent($event)"
+		 *ngIf="selectedMateria && hidenewMateria" [materia]="selectedMateria" [escuelas]="escuelas" [universidades]="universidades"></materia-detalle>
 	</div>
-	
+
 	<div class="col-sm-3">
-		<button  (click)="newMateria()" style="margin-bottom:2px;" type="button" class="btn btn-success btn-block">Agregar</button>
+		<button (click)="newMateria()" style="margin-bottom:2px;" type="button" class="btn btn-success btn-block">Agregar</button>
 		<materia-list (SelectMateria)="onSelectMateria($event)" [materias]="materias"></materia-list>
 	</div>
 </div>
-
-
-			

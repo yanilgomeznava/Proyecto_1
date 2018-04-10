@@ -12,7 +12,7 @@ const Profesor = require('../models/usuario.model');
 const Estudiante = require('../models/usuario.model');
 const Escuela = require('../models/escuela.model');
 
-
+//conexion al server 
 const db = "mongodb://admin:1234@ds261828.mlab.com:61828/bdtarea";
 mongoose.Promise = global.Promise;
 
@@ -22,8 +22,8 @@ mongoose.connect(db, function(err){
     }
 });
 
-
-
+// -- ----MATERIAS CRUD----
+//
 router.get('/materias', function(req, res){
     console.log('Get request for all materias');
     Materia.find({})
@@ -49,20 +49,22 @@ router.get('/materias/:id', function(req, res){
     });
 });
 
-
+//--- CREAR UNA MATERIA NUEVA
 router.post('/materia', function(req, res){
     console.log('Post materia');
     var newMateria = new Materia();
     newMateria.universidad = req.body.universidad;
+    newMateria.escuela = req.body.escuela;
     newMateria.carrera = req.body.carrera;
     newMateria.nombreMateria = req.body.nombreMateria;
     newMateria.codigoMateria = req.body.codigoMateria;
     newMateria.nombreMalla = req.body.nombreMalla;
     newMateria.temas = req.body.temas;
     newMateria.tituloSubtema = req.body.tituloSubtema;
-
+    console.log(newMateria);
     newMateria.save(function(err, insertedMateria){
         if (err){
+            console.log(err);
             console.log('Error al guardar materia');
         }else{
             res.json(insertedMateria);
@@ -70,11 +72,12 @@ router.post('/materia', function(req, res){
     });
 });
 
+//GUARDAR UNA MATERIA NUEVA
 router.put('/materia/:id', function(req, res){
     console.log('Actualizar materia');
     Materia.findByIdAndUpdate(req.params.id,
     {
-        $set: {universidad:  req.body.universidad, carrera: req.body.carrera, nombreMateria: req.body.nombreMateria, codigoMateria: req.body.codigoMateria, nombreMalla: req.body.nombreMalla,
+        $set: {universidad:  req.body.universidad, escuela: req.body.escuela, carrera: req.body.carrera, nombreMateria: req.body.nombreMateria, codigoMateria: req.body.codigoMateria, nombreMalla: req.body.nombreMalla,
             temas: req.body.temas,tituloSubtema: req.body.tituloSubtema}
     },
     {
@@ -91,6 +94,7 @@ router.put('/materia/:id', function(req, res){
     );
 });
 
+//ELIMINAR UNA MATERIA
 router.delete('/materia/:id', function(req, res){
     console.log('Deleting a materia');
     Materia.findByIdAndRemove(req.params.id, function(err, deletedMateria){
@@ -104,9 +108,9 @@ router.delete('/materia/:id', function(req, res){
 
 
 
-//------------FORO------------
+//------------FORO CRUD------------
 
-
+// TRAER TODOS LOS FOROS
 router.get('/foros', function(req, res){
     console.log('Get request for all foros');
     Foro.find({}).populate("materia")
@@ -120,6 +124,8 @@ router.get('/foros', function(req, res){
     });
 });
 
+//BUSCAR UN UNICO FORO
+
 router.get('/foros/:id', function(req, res){
     console.log('Get request for a unico foro');
     Foro.findById(req.params.id).populate("materia")
@@ -132,7 +138,7 @@ router.get('/foros/:id', function(req, res){
     });
 });
 
-
+//CREAR UN FORO NUEVO
 router.post('/foro', function(req, res){
     console.log('Post foro');
     var newForo = new Materia();
@@ -152,6 +158,7 @@ router.post('/foro', function(req, res){
     });
 });
 
+//GUARDAR UN FORO
 router.put('/foro/:id', function(req, res){
     console.log('Actualizar foro');
     Foro.findByIdAndUpdate(req.params.id,
@@ -173,6 +180,7 @@ router.put('/foro/:id', function(req, res){
     );
 });
 
+//ELIMINAR UN FORO
 router.delete('/foro/:id', function(req, res){
     console.log('Deleting foro');
     Foro.findByIdAndRemove(req.params.id, function(err, deletedForo){
@@ -185,7 +193,9 @@ router.delete('/foro/:id', function(req, res){
 });
 
 
-//-------------GRUPO------------
+//-------------GRUPO CRUD------------
+
+//CONSEGUIR TODOS LOS GRUPOS
 router.get('/grupos', function(req, res){
     console.log('Get request for all grupos');
     Grupo.find({}).populate("materia","usuario")
@@ -199,6 +209,8 @@ router.get('/grupos', function(req, res){
     });
 });
 
+// GRUPO EN ESPECIFICO
+
 router.get('/grupos/:id', function(req, res){
     console.log('Get request for a unico grupo');
     Grupo.findById(req.params.id).populate("materia","usuario")
@@ -211,6 +223,7 @@ router.get('/grupos/:id', function(req, res){
     });
 });
 
+//UN NUEVO GRUPO
 
 router.post('/grupo', function(req, res){
     console.log('Post grupo');
@@ -244,6 +257,8 @@ router.post('/grupo', function(req, res){
     });
 });
 
+//GUARDAR UN NUEVO GRUPO
+
 router.put('/grupo/:id', function(req, res){
     console.log('Actualizar grupo');
     Grupo.findByIdAndUpdate(req.params.id,
@@ -271,6 +286,8 @@ router.put('/grupo/:id', function(req, res){
     );
 });
 
+//BORRAR UN GRUPO
+
 router.delete('/grupo/:id', function(req, res){
     console.log('Deleting grupo');
     Grupo.findByIdAndRemove(req.params.id, function(err, deletedGrupo){
@@ -282,8 +299,9 @@ router.delete('/grupo/:id', function(req, res){
     });
 });
 
-//-------------MENSAJERIA------
+//-------------MENSAJERIA CRUD------
 
+//ENCONTRAR TODAS LAS MENSAJERIAS
 router.get('/mensajerias', function(req, res){
     console.log('Get request for all mensajerias');
     Mensajeria.find({}).populate("emisor","receptor")
@@ -297,6 +315,7 @@ router.get('/mensajerias', function(req, res){
     });
 });
 
+//ENCONTRAR UNA MSJ EN ESPECIFICO
 router.get('/mensajerias/:id', function(req, res){
     console.log('Get request for a unica mensajeria');
     Mensajeria.findById(req.params.id).populate("emisor","receptor")
@@ -309,7 +328,7 @@ router.get('/mensajerias/:id', function(req, res){
     });
 });
 
-
+//CREAR UNA NUEVA MSJ
 router.post('/mensajeria', function(req, res){
     console.log('Post mensajeria');
     var newMensajeria = new Mensajeria();
@@ -329,6 +348,7 @@ router.post('/mensajeria', function(req, res){
     });
 });
 
+//GUARDAR MSJ
 router.put('/mensajeria/:id', function(req, res){
     console.log('Actualizar mensajeria');
     Mensajeria.findByIdAndUpdate(req.params.id,
@@ -349,7 +369,7 @@ router.put('/mensajeria/:id', function(req, res){
 
     );
 });
-
+// BORRAR MSJ
 router.delete('/mensajeria/:id', function(req, res){
     console.log('Deleting mensajeria');
     Mensajeria.findByIdAndRemove(req.params.id, function(err, deletedMensajeria){
@@ -361,9 +381,9 @@ router.delete('/mensajeria/:id', function(req, res){
     });
 });
 
-//---------UNIVERSIDAD------
+//---------UNIVERSIDAD CRUD------
 
-
+// CONSEEGUIR TODAS LAS UNIVERSIDADES
 router.get('/universidades', function(req, res){
     console.log('Get request for all universidades');
     Universidad.find({})
@@ -377,6 +397,7 @@ router.get('/universidades', function(req, res){
     });
 });
 
+//CONSEGUIR UNA UNIVERSIDAD ESPECIFICA
 router.get('/universidades/:id', function(req, res){
     console.log('Get request for a unica universidad');
     Universidad.findById(req.params.id)
@@ -389,7 +410,7 @@ router.get('/universidades/:id', function(req, res){
     });
 });
 
-
+//CREAR UNA UNIVERSIDAD
 router.post('/universidad', function(req, res){
     console.log('Post universidad');
     var newUniversidad = new Universidad();
@@ -406,6 +427,7 @@ router.post('/universidad', function(req, res){
     });
 });
 
+//GUARDAR UNIVERSIDAD
 router.put('/universidad/:id', function(req, res){
     console.log('Actualizar universidad');
     Universidad.findByIdAndUpdate(req.params.id,
@@ -425,7 +447,7 @@ router.put('/universidad/:id', function(req, res){
 
     );
 });
-
+ // BORRAR UNIVERSIDAD
 router.delete('/universidad/:id', function(req, res){
     console.log('Deleting universidad');
     Universidad.findByIdAndRemove(req.params.id, function(err, deletedUniversidad){

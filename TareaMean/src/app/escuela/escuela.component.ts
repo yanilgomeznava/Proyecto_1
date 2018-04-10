@@ -22,6 +22,7 @@ export class EscuelaComponent implements OnInit {
 
   constructor(private _escuelaService: EscuelaService) { }
 
+  // LSITA DE UNIVERSDADES Y ESCUELAS
   ngOnInit() {
     this._escuelaService.getEscuelas()
       .subscribe(resEscuelaData => this.escuelas = resEscuelaData);
@@ -30,6 +31,7 @@ export class EscuelaComponent implements OnInit {
     this.programasTemp = new Array(); 
     }
 
+  // SELECCIONAR ESCUELA ESPECIFICA
   onSelectEscuela(escuela: any) {
     this.selectedEscuela = escuela;
     this.hidenewEscuela = true;
@@ -37,7 +39,7 @@ export class EscuelaComponent implements OnInit {
   }
 
 
-
+//AGREGAR ESCUELA
   onSubmitAddEscuela(escuela: Escuela) {
     escuela.programa = this.programasTemp;
     this.programasTemp = new Array();
@@ -53,7 +55,7 @@ export class EscuelaComponent implements OnInit {
 
   }
   
-
+//ACTUALIZAR ESCUELA
   onUpdateEscuelaEvent(escuela: any) {
     this._escuelaService.updateEscuela(escuela)
       .subscribe(resUpdatedEscuela => escuela = resUpdatedEscuela);

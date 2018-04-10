@@ -6,14 +6,22 @@
         <h3 *ngIf="!editNombre" (click)="onNombreClick()">{{escuela.nombreEscuela}}</h3>
 
         <div class="form-group">
-            <label>Nombre Universidad</label>
+            <label>Universidad</label>
             <select class="form-control" #select [(ngModel)]="escuela.universidad" name="universidad" (change)="onDropdown(select.value)">
                 <option *ngFor="let universidad of universidades" [value]="universidad._id">{{universidad.nombreUniversidad}}</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label>Nombre Carrera</label>
+                <label>Escuela</label>
+                <select #selectPrograma [(ngModel)]="programaSeleccionadoNombre" (change)="onChangePrograma(selectPrograma.value)" [ngModelOptions]="{standalone: true}">
+                    <option *ngFor="let programa of escuela.programa " [value]="programa.nombrePrograma">{{programa.nombrePrograma}}
+                    </option>
+                </select>
+            </div>
+
+        <div class="form-group">
+            <label>Carrera</label>
             <select #selectPrograma [(ngModel)]="programaSeleccionadoNombre" (change)="onChangePrograma(selectPrograma.value)" [ngModelOptions]="{standalone: true}">
                 <option *ngFor="let programa of escuela.programa " [value]="programa.nombrePrograma">{{programa.nombrePrograma}}
                 </option>

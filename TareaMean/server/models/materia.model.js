@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 
 const materiaSchema = new Schema({
     universidad:{type:Schema.Types.ObjectId, ref:'universidad'},
-    carrera:{type:Schema.Types.ObjectId, ref:'carrera'},
+    escuela:{type:Schema.Types.ObjectId, ref:'escuela'},
+    carrera: String,
     nombreMateria: {
       type: String,
       required: true
