@@ -43,8 +43,6 @@ export class EscuelaComponent implements OnInit {
   onSubmitAddEscuela(escuela: Escuela) {
     escuela.programa = this.programasTemp;
     this.programasTemp = new Array();
-    console.log(escuela);
-    console.log("dfdfdfff");
     this._escuelaService.addEscuela(escuela)
       .subscribe(resNewEscuela => {
         this.escuelas.push(resNewEscuela);
@@ -62,7 +60,7 @@ export class EscuelaComponent implements OnInit {
     this.selectedEscuela = null;
   };
 
-
+//BORRAR ESCUELA
   onDeleteEscuelaEvent(escuela: any) {
     let escuelaArray = this.escuelas;
     this._escuelaService.deleteEscuela(escuela)

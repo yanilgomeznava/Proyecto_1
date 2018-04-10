@@ -72,6 +72,7 @@ export class MateriaComponent implements OnInit {
     }
   }
 
+    // SELECIONA LAS CARRERAS SEGUN LAS ESCUELAS
   onSelectCarrera(carreraSel: String){
     this.mallaSelected = null;
     for (var p in this.escuela.programa){
@@ -88,6 +89,8 @@ export class MateriaComponent implements OnInit {
     }
   }
 
+  //Al selecionar la universidad, actualiza las escuelas de esta
+
   onSelectUniversidad(universidadStr : String){
     console.log("onSelectUniversidad");
     this.universidadSelected = universidadStr;
@@ -100,7 +103,7 @@ export class MateriaComponent implements OnInit {
     console.log(this.selectedMateria);
   }
 
-  //agrega materia
+  //agrega materia a su carrera y universidad correspondiente
 
   onSubmitAddMateria(materia: Materia) {
     console.log(materia);
@@ -115,6 +118,7 @@ export class MateriaComponent implements OnInit {
 
 }
 
+//actualiza los datos de la materia
   onUpdateMateriaEvent(materia: any) {
     this._materiaService.updateMateria(materia)
       .subscribe(resUpdatedMateria => materia = resUpdatedMateria);
@@ -122,6 +126,7 @@ export class MateriaComponent implements OnInit {
   };
 
 
+  //elimina una materia especifica
   onDeleteMateriaEvent(materia: any) {
   let materiaArray = this.materias;
   this._materiaService.deleteMateria(materia)

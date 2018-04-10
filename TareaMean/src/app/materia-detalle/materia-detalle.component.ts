@@ -28,7 +28,7 @@ export class MateriaDetalleComponent implements OnInit {
     console.log(this.universidades);
     console.log(this.escuelas);
 
-      //selecciona universidad segun la materia
+      //selecciona universidad segun la materia, por medio de referencias
     for (let u of this.universidades) {
       console.log(u);
       if (u._id === this.materia.universidad) {

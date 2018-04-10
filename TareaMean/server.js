@@ -1,3 +1,5 @@
+//UTILIZACION DE EXPRESS PARA LA CONEXION
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -9,7 +11,7 @@ var session      = require('express-session');
 
 const api = require('./server/routes/api');
 
-const port = 4200;
+const port = 4200;// PUERTO A CONECTAR
 
 const app = express();
 

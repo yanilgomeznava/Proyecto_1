@@ -1,3 +1,4 @@
+//ESTRUCTURA DE LA CLASE ESCUELA
 export class Escuela {
     _id: string;
     nombreEscuela: String;
