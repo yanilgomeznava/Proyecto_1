@@ -6,14 +6,22 @@
         <h3 *ngIf="!editNombre" (click)="onNombreClick()">{{escuela.nombreEscuela}}</h3>
 
         <div class="form-group">
-            <label>Nombre Universidad</label>
+            <label>Universidad</label>
             <select class="form-control" #select [(ngModel)]="escuela.universidad" name="universidad" (change)="onDropdown(select.value)">
                 <option *ngFor="let universidad of universidades" [value]="universidad._id">{{universidad.nombreUniversidad}}</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label>Nombre Carrera</label>
+                <label>Escuela</label>
+                <select #selectPrograma [(ngModel)]="programaSeleccionadoNombre" (change)="onChangePrograma(selectPrograma.value)" [ngModelOptions]="{standalone: true}">
+                    <option *ngFor="let programa of escuela.programa " [value]="programa.nombrePrograma">{{programa.nombrePrograma}}
+                    </option>
+                </select>
+            </div>
+
+        <div class="form-group">
+            <label>Carrera</label>
             <select #selectPrograma [(ngModel)]="programaSeleccionadoNombre" (change)="onChangePrograma(selectPrograma.value)" [ngModelOptions]="{standalone: true}">
                 <option *ngFor="let programa of escuela.programa " [value]="programa.nombrePrograma">{{programa.nombrePrograma}}
                 </option>
@@ -24,7 +32,7 @@
                 <input type="text" class="form-control" required name="nombrePrograma" placeholder="Nuevo Programa" ngModel>
                 <button type="submit" class="btn btn-success">Agregar Carrera</button>
                 <button type="button" (click)="deletePrograma()" class="btn btn-primary">Eliminar Carrera</button>
-            </form>
+        </form>
 
         <div class="form-group">
                 <label>Mallas de la Carrera Seleccionada:</label>
@@ -32,20 +40,38 @@
                     <option *ngFor="let malla of programaSeleccionado.mallas" [value]="malla.nombreMalla">{{malla.nombreMalla}}
                     </option>
                 </select>
-            </div>
+        </div>
 
             <form #formNuevaMalla="ngForm" (ngSubmit)="onAgregarNuevaMalla(formNuevaMalla.value)">
                     <input type="text" class="form-control" required name="nombreMalla" placeholder="Nueva Malla" ngModel>
                     <button type="submit" class="btn btn-success">Agregar Malla</button>
                     <button type="button" (click)="deleteMalla(formNuevaMalla)" class="btn btn-primary">Eliminar Malla</button>
-                </form>
-
-
+            </form>
 
 
 
         <button type="button" (click)="updateEscuela()" class="btn btn-primary">Actualizar</button>
         <button type="button" (click)="deleteEscuela()" class="btn btn-danger">Eliminar</button>
+
+        
+        <table>
+                <thead>
+                  <tr>
+                    <th>Codigo</th>
+                    <th>Materia</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!--<tr ng-repeat="provincia in provincias | orderBy:'nombre' | limitTo:6">
+                    <td>{{provincia.codProvincia}}</td>
+                    <td>{{provincia.nombre}}</td>
+                  </tr>-->
+                    <tr>
+                        <td>253</td>
+                        <td>Quimica</td>
+                    </tr>
+                </tbody>
+              </table>
 
     </form>
 </div>

@@ -8,6 +8,7 @@
 						<input type="text" class="form-control" required name="nombreEscuela" ngModel>
 					</div>
 					<div>
+						<label>Universidad</label>
 						<select name="universidad" ngModel>
 							<option *ngFor="let universidad of universidades" [value]="universidad._id">
 								{{universidad.nombreUniversidad}}</option>

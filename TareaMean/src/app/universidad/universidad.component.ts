@@ -18,18 +18,20 @@ universidades: Array<Universidad>;
 
   constructor(private _universidadService: UniversidadService) { }
 
+  //
   ngOnInit() {
     this._universidadService.getUniversidades()
       .subscribe(resUniversidadData => this.universidades = resUniversidadData )
   }
 
+  //SELECION DE UNIVERSIDAD
   onSelectUniversidad(universidad: any){
   this.selectedUniversidad = universidad;
   this.hidenewUniversidad = true;
   console.log(this.selectedUniversidad);
   }
 
-
+// AGREGAR UNIVERSIDAD
   onSubmitAddUniversidad(universidad: Universidad) {
   this._universidadService.addUniversidad(universidad)
     .subscribe(resNewUniversidad => {
@@ -39,14 +41,14 @@ universidades: Array<Universidad>;
     });
 
 }
-
+//ACTUALIAR UNIVERSIDAD
   onUpdateUniversidadEvent(universidad: any) {
     this._universidadService.updateUniversidad(universidad)
       .subscribe(resUpdatedUniversidad => universidad = resUpdatedUniversidad);
     this.selectedUniversidad = null;
   };
 
-
+// BORRAR UNIVERSIDAD
   onDeleteUniversidadEvent(universidad: any) {
   let universidadArray = this.universidades;
   this._universidadService.deleteUniversidad(universidad)

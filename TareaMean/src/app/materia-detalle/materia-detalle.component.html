@@ -6,29 +6,72 @@
             <input type="input" class="form-control" name="nombre" required placeholder="nombre"
             [(ngModel)]="materia.nombreMateria">
         </div>
+        <!-- Seleccion de la universidad para esa materia -->
         <h3 *ngIf="!editNombre" (click)="onNombreClick()">{{materia.nombreMateria}}</h3>  
+        <div class="form-group">
+                <label>Universidad</label>
+                <select class="form-control" [(ngModel)]="universidadId" #select name="universidad" (change)="onDropdown(select.value)">
+                    <option *ngFor="let universidad of universidades" [value]="universidad._id">{{universidad.nombreUniversidad}}</option>
+                </select>
+        </div>
+        <!--Seleccion de carrera la carrera para esa materia-->
+        <div class="form-group">
+                <label>Carrera</label>
+                 <!-- <select #selectPrograma [(ngModel)]="programaSeleccionadoNombre" (change)="onChangePrograma(selectPrograma.value)" [ngModelOptions]="{standalone: true}">
+                    <option *ngFor="let programa of escuela.programa " [value]="programa.nombrePrograma">{{programa.nombrePrograma}}
+                    </option> 
+                </select> -->
+        </div>
+        <!--Inseccion de codigo para esa materia-->
         <div class="form-group">
             <label>Codigo</label>
             <input type="input" class="form-control" name="codigo" required placeholder="codigo"
             [(ngModel)]="materia.codigoMateria">
         </div>
-        <div class="form-group">
-            <label>Malla</label>
-            <input type="input" class="form-control" name="malla" required placeholder="malla"
-            [(ngModel)]="materia.nombreMalla">
+         <!--Selecciona de las mallas disponibles-->
+         <div class="form-group"> 
+                <label>Mallas de la Carrera Seleccionada:</label>
+                <select *ngIf="programaSeleccionado" #selectPrograma [(ngModel)]="mallaSeleccionadoNombre" [ngModelOptions]="{standalone: true}">
+                    <option *ngFor="let malla of programaSeleccionado.mallas" [value]="malla.nombreMalla">{{malla.nombreMalla}}
+                    </option>
+                </select>
         </div>
-        <div class="form-group">
-            <label>Tema</label>
-            <input type="input" class="form-control" name="tema" required placeholder="tema"
-            [(ngModel)]="materia.tituloTema">
+
+        <!--TEMAS / SUBTEMAS-->
+        <!--Seleccion de temas disponibles-->
+        <div class="form-group"> 
+                <label>Temas del curso:</label>
+                <select *ngIf="programaSeleccionado" #selectPrograma [(ngModel)]="mallaSeleccionadoNombre" [ngModelOptions]="{standalone: true}">
+                    <option *ngFor="let malla of programaSeleccionado.mallas" [value]="malla.nombreMalla">{{malla.nombreMalla}}
+                    </option>
+                </select>
         </div>
-        <div class="form-group">
-            <label>SubTema</label>
-            <input type="input" class="form-control" name="subtema" required placeholder="subtema"
-            [(ngModel)]="materia.tituloSubtema">
+        <!--Agregar un nuevo tema-->
+        <form #formNuevoTema="ngForm" (ngSubmit)="onAgregarNuevaMalla(formNuevaMalla.value)">
+                <input type="text" class="form-control" required name="nombreMalla" placeholder="Nuevo Tema" ngModel>
+                <button type="submit" class="btn btn-success">+</button>
+                <button type="button" (click)="deleteMalla(formNuevaMalla)" class="btn btn-primary">-</button>
+        </form>
+         <!--Seleccion de SUBtemas disponibles segun el tema seleccionado-->
+         <div class="form-group"> 
+                <label>Subtemas:</label>
+                <select *ngIf="programaSeleccionado" #selectPrograma [(ngModel)]="mallaSeleccionadoNombre" [ngModelOptions]="{standalone: true}">
+                    <option *ngFor="let malla of programaSeleccionado.mallas" [value]="malla.nombreMalla">{{malla.nombreMalla}}
+                    </option>
+                </select>
         </div>
+        <!--Agregar un nuevo SUBtema-->
+        <form #formNuevoSubTema="ngForm" (ngSubmit)="onAgregarNuevaMalla(formNuevaMalla.value)">
+                <input type="text" class="form-control" required name="nombreMalla" placeholder="Nuevo Subtema" ngModel>
+                <button type="submit" class="btn btn-success">+</button>
+                <button type="button" (click)="deleteMalla(formNuevaMalla)" class="btn btn-primary">-</button>
+        </form>
+
+
+
+
+
         <button type="button" (click)="updateMateria()" class="btn btn-primary">Actualizar</button>  
-        <button type="button" (click)="deleteMateria()" class="btn btn-danger">Eliminar</button> 
-          
+        <button type="button" (click)="deleteMateria()" class="btn btn-danger">Eliminar</button>     
     </form>
 </div>
